@@ -18,6 +18,10 @@ abstract class FourmiIntelligente extends FourmiAbstraite {
 
 	Pheromone pheromone;
 
+	public void deposerPheromone(double quantite) {
+		Grille.getInstance().deposerPheromone(posi, posj, pheromone, quantite);
+	}
+
 }
 
 enum Pheromone {
