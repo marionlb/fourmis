@@ -4,9 +4,8 @@ public class Grille {
 
 	int N;
 	double grille[][];
-	
-	private static Grille instance = null;
 
+	private static Grille instance = null;
 
 	private Grille() {
 
@@ -19,19 +18,19 @@ public class Grille {
 	public boolean isSourceNourriture(int i, int j) {
 		return false;
 	}
-	
+
 	public double pheromone(Pheromone p) {
-		
+
 		return 0;
 	}
-	
+
 	public void evaporation() {
-		
+
 	}
 
 	public static Grille getInstance() {
 		if (instance == null) {
-			synchronized (Grille.class){
+			synchronized (Grille.class) {
 				if (instance == null) {
 					instance = new Grille();
 				}
