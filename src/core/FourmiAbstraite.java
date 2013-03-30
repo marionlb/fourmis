@@ -18,6 +18,9 @@ abstract class FourmiIntelligente extends FourmiAbstraite {
 
 	Pheromone pheromone;
 
+	double qo = 0.8;
+	double Q = 1;
+	
 	public void deposerPheromone(double quantite) {
 		Grille.getInstance().deposerPheromone(posi, posj, pheromone, quantite);
 	}

@@ -6,10 +6,8 @@ public class Grille {
 
 	public static int N = 50;
 	public static double persistance = 0.8;
-	public static double qo = 0.8;
 	public static double t_init = 0.001;
 	public static int nbfourmis = 10;
-	public static double Q = 1;
 
 	private static Grille instance = null;
 	private static int decalage = 10000;
