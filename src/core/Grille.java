@@ -46,7 +46,7 @@ public class Grille {
 		}
 
 		double pA = grille[i][j] % decalage;
-		double pB = (grille[i][j] - grille[i][j] % decalage) / decalage;
+		double pB = grille[i][j] - decalage;
 
 		// Si on ne précise pas de phéromones, on retourne la somme de Pher_A et
 		// Pher_B
