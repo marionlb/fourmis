@@ -2,7 +2,7 @@ package core;
 
 public class Grille {
 
-	static double grille[][];
+	public static double grille[][];
 
 	public static int N = 50;
 	public static double persistance = 0.8;
@@ -12,7 +12,7 @@ public class Grille {
 	private static Grille instance = null;
 	private static int decalage = 10000;
 
-	private Grille() {
+	public Grille() {
 		Grille.N = 50;
 		Grille.grille = new double[N][N];
 
