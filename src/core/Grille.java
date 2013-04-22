@@ -79,12 +79,14 @@ public class Grille {
 		return instance;
 	}
 
-	public static void placerFourmillere() {
+	public static int[] placerFourmillere() {
 		int i, j;
 		// i et j entre N/4 et 3N/4
 		i = (int) (Math.random() * N / 2 + N / 4);
 		j = (int) (Math.random() * N / 2 + N / 4);
 		grille[i][j] = -1;
+		int[] couple = {i,j};
+		return couple;
 	}
 
 	public static void placerSourcesNourriture(int nb) {

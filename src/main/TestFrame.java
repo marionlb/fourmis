@@ -13,7 +13,7 @@ public class TestFrame extends JFrame {
 	/* Données */
 	final int width, height;
 	
-	Colonie colonie;
+	public Colonie colonie;
 
 	/*
 	 * Paramètres graphiques.
@@ -83,10 +83,17 @@ public class TestFrame extends JFrame {
 		int height = 50;
 
 		// Creation de la fenètre.
-		JFrame frame = new TestFrame(width, height);
+		TestFrame frame = new TestFrame(width, height);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setSize(700, 700);
 		frame.setVisible(true);
+		
+		while (true) {
+			for (int k=0; k<frame.colonie.nbfourmis; k++) {
+				frame.colonie.listeFourmis[k].deplacement();
+			}
+			frame.repaint();
+		}
 	}
 
 	/* On s'en fiche */

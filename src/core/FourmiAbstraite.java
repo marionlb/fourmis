@@ -25,6 +25,7 @@ public abstract class FourmiAbstraite implements Runnable {
 		this.posi = posi;
 		this.posj = posj;
 		this.chemin = new Chemin();
+		this.chemin.ajouterPos(posi, posj);
 	}
 
 }
