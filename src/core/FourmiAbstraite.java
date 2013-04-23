@@ -8,7 +8,7 @@ public abstract class FourmiAbstraite implements Runnable {
 	int posi, posj;
 	Chemin chemin;
 	boolean revenirMaison;
-	
+
 	public abstract void deplacement();
 
 	@Override
@@ -35,83 +35,85 @@ public abstract class FourmiAbstraite implements Runnable {
 	}
 
 	public void deplacementAleatoire() {
-		double tirage = Math.random();
-		
-		if (this.chemin.itineraire.size()>1) {
-			int[] dernierePos = this.chemin.itineraire.lastElement();
-			int[] avantDerniere = this.chemin.itineraire.elementAt(chemin.itineraire.size()-2);
-
-			
-			if (dernierePos[0]-avantDerniere[0]==0){  //déplacement précédent horizontal
-				if(dernierePos[1]-avantDerniere[1]<0){	//de la droite vers la gauche
-					if (tirage<0.3){
-						this.posi = Math.abs(this.posi - 1);	//monter
-					}
-					else if (tirage>0.3){
-						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
-					}
-					else{
-						this.posj = Math.abs(this.posj - 1);	//aller à gauche
-					}
-				}
-				else{	//de la gauche vers la droite
-					if (tirage<0.3){
-						this.posi = Math.abs(this.posi - 1);	//monter
-					}
-					else if (tirage>0.3){
-						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
-					}
-					else{
-						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
-					}
-				}
-			}
-			else{	//déplacement précédent vertical
-				if(dernierePos[0]-avantDerniere[0]<0){	//du bas vers le haut
-					if (tirage<0.3){
-						this.posj = Math.abs(this.posj - 1);	//aller à gauche
-					}
-					else if (tirage>0.3){
-						this.posi = Math.abs(this.posi - 1);	//monter  
-					}
-					else{
-						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
-					}
-				}
-				else{	//du haut vers le bas
-					if (tirage<0.3){
-						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
-					}
-					else if (tirage>0.3){
-						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
-					}
-					else{
-						this.posj = Math.abs(this.posj - 1);	//aller à gauche
-					}
-				}
-			}
-		}
-		else {
-			if (tirage<0.25) {
-				this.posi = -Math.abs(this.posi+1 -49) +49; 
-			}
-			else if (tirage<0.50) {
-				this.posj = Math.abs(this.posj - 1);
-			}
-			else if (tirage<0.75) {
-				this.posi = Math.abs(this.posi - 1);
-			}
-			else {
-				this.posj = -Math.abs(this.posj+1 -49) +49;
-			}
-		}
+		double tirage = Math.random();	
+	
+		int[] dernierePos = this.chemin.itineraire.lastElement();
+		int oldi=dernierePos[0],oldj=dernierePos[1];
+	
+		//on vient de la gauche
+		if(oldi==posi && oldj<posj)
+			if(tirage<0.5)
+				//vers la droite
+				prendreDroite();
+			else if(tirage<2./3)
+				//vers le bas
+				prendreBas();
+			else
+				//vers le haut
+				prendreHaut();
+	
+		//on vient de la droite
+		else if(oldi==posi && oldj>posj)
+			if(tirage<0.5)
+				//vers la gauche
+				prendreGauche();
+			else if(tirage<2./3)
+				//vers le bas
+				prendreBas();
+			else
+				//vers le haut
+				prendreHaut();
+	
+		//on vient du haut
+		else if(oldi<posi && oldj==posj)
+			if(tirage<0.5)
+				//vers le bas
+				prendreBas();
+			else if(tirage<2./3)
+				//vers la droite
+				prendreDroite();
+			else
+				//vers la gauche
+				prendreGauche();
+	
+		//on vient du bas
+		else if(oldi>posi && oldj==posj)
+			if(tirage<0.5)
+				//vers le haut
+				prendreHaut();
+			else if(tirage<2./3)
+				//vers la droite
+				prendreDroite();
+			else
+				//vers la gauche
+				prendreGauche();
+	
+		else 
+	
+			if(tirage<0.25) 
+				//vers le bas
+				prendreBas();
+			else if(tirage<0.5) 
+				//vers le haut
+				prendreHaut();
+			else if(tirage<0.75)
+				//vers la droite
+				prendreDroite();
+			else 
+				//vers la gauche
+				prendreGauche();
+	
 		this.chemin.ajouterPos(posi, posj);
 	}
+
+	public void revenirMaison() {
 	
+	}
+
 	public int[] voitNourriture() {
 		int DISTANCE=3;
 		int i=posi, j=posj;
-		
+	
 		List<int[]> biglist = new ArrayList<int[]>();
 		biglist.addAll(Arrays.asList(
 				//DISTANCE 1
@@ -142,16 +144,34 @@ public abstract class FourmiAbstraite implements Runnable {
 				new int[] {i-2,j+1},
 				new int[] {i+2,j+1}
 		));
-		
+	
 		for (int[] pos : biglist) {
 			try {
 				if(Grille.getInstance().isSourceNourriture(pos[0], pos[1]))
 					return pos;
 			} catch (IndexOutOfBoundsException e) {
-				
+	
 			}
 		}	
 		return null;
+	}
+
+	private void prendreGauche() {
+		this.posj = Math.abs(this.posj - 1);
+	}
+
+	private void prendreDroite() {
+		int taille = Grille.N;
+		this.posj = -Math.abs(this.posj+1 -(taille-1)) + taille-1;
+	}
+
+	private void prendreBas() {
+		int taille = Grille.N;
+		this.posi = -Math.abs(this.posi+1 -(taille-1)) +(taille-1);
+	}
+
+	private void prendreHaut() {
+		this.posi = Math.abs(this.posi - 1);
 	}
 }
 

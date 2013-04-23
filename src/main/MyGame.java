@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import core.Grille;
 
 public class MyGame {
-	private static final int FRAME_DELAY = 500; // 20ms. implies 50fps (1000/20) = 50
+	private static final int FRAME_DELAY = 50; // 20ms. implies 50fps (1000/20) = 50
 	private static Colonie colonie = new Colonie();
 
 	public static void main(String[] args) {
