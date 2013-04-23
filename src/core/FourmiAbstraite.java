@@ -166,22 +166,39 @@ public abstract class FourmiAbstraite implements Runnable {
 		return null;
 	}
 
-	private void prendreGauche() {
+	protected void prendreGauche() {
 		this.posj = Math.abs(this.posj - 1);
 	}
 
-	private void prendreDroite() {
+	protected void prendreDroite() {
 		int taille = Grille.N;
 		this.posj = -Math.abs(this.posj+1 -(taille-1)) + taille-1;
 	}
 
-	private void prendreBas() {
+	protected void prendreBas() {
 		int taille = Grille.N;
 		this.posi = -Math.abs(this.posi+1 -(taille-1)) +(taille-1);
 	}
 
-	private void prendreHaut() {
+	protected void prendreHaut() {
 		this.posi = Math.abs(this.posi - 1);
+	}
+	
+	public void avancerVers(int i, int j) {
+		int di = posi-i, dj=posj-j;
+		
+		if( i < posi )
+			//on veut aller vers le bas (diminuer posi)
+			prendreBas();
+		else if( i > posi) 
+			//on veut aller vers le haut
+			prendreHaut();
+		else if( j < posj )
+			//on veut aller vers la gauche (diminuer posj)
+			prendreGauche();
+		else if( j > posj) 
+			//on veut aller vers la droite (augmenter posj)
+			prendreDroite();
 	}
 }
 
