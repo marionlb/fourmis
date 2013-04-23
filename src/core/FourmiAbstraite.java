@@ -117,41 +117,39 @@ public abstract class FourmiAbstraite implements Runnable {
 		List<int[]> biglist = new ArrayList<int[]>();
 		biglist.addAll(Arrays.asList(
 				//DISTANCE 1
-				new int[] {i,j-1},
-				new int[] {i,j+1},
-				new int[] {i-1,j},
-				new int[] {i+1,j},
+				new int[] {i,j-1,1},
+				new int[] {i,j+1,1},
+				new int[] {i-1,j,1},
+				new int[] {i+1,j,1},
 				//DISTANCE 2
-				new int[] {i,j-2},
-				new int[] {i,j+2},
-				new int[] {i-2,j},
-				new int[] {i+2,j},
-				new int[] {i-1,j-1},
-				new int[] {i-1,j+1},
-				new int[] {i+1,j-1},
-				new int[] {i+1,j+1},
+				new int[] {i,j-2,2},
+				new int[] {i,j+2,2},
+				new int[] {i-2,j,2},
+				new int[] {i+2,j,2},
+				new int[] {i-1,j-1,2},
+				new int[] {i-1,j+1,2},
+				new int[] {i+1,j-1,2},
+				new int[] {i+1,j+1,2},
 				//DISTANCE 3
-				new int[] {i,j-3},
-				new int[] {i,j+3},
-				new int[] {i-3,j},
-				new int[] {i+3,j},
-				new int[] {i-2,j-1},
-				new int[] {i-2,j+1},
-				new int[] {i+2,j-1},
-				new int[] {i+2,j+1},
-				new int[] {i+1,j-2},
-				new int[] {i+1,j+2},
-				new int[] {i-2,j+1},
-				new int[] {i+2,j+1}
+				new int[] {i,j-3,3},
+				new int[] {i,j+3,3},
+				new int[] {i-3,j,3},
+				new int[] {i+3,j,3},
+				new int[] {i-2,j-1,3},
+				new int[] {i-2,j+1,3},
+				new int[] {i+2,j-1,3},
+				new int[] {i+2,j+1,3},
+				new int[] {i+1,j-2,3},
+				new int[] {i+1,j+2,3},
+				new int[] {i-2,j+1,3},
+				new int[] {i+2,j+1,3}
 		));
 	
 		for (int[] pos : biglist) {
 			try {
 				if(Grille.getInstance().isSourceNourriture(pos[0], pos[1]))
 					return pos;
-			} catch (IndexOutOfBoundsException e) {
-	
-			}
+			} catch (IndexOutOfBoundsException e) {	}
 		}	
 		return null;
 	}
