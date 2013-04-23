@@ -1,5 +1,9 @@
 package core;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class FourmiAbstraite implements Runnable {
 	int posi, posj;
 	Chemin chemin;
@@ -102,6 +106,52 @@ public abstract class FourmiAbstraite implements Runnable {
 			}
 		}
 		this.chemin.ajouterPos(posi, posj);
+	}
+	
+	public int[] voitNourriture() {
+		int DISTANCE=3;
+		int i=posi, j=posj;
+		
+		List<int[]> biglist = new ArrayList<int[]>();
+		biglist.addAll(Arrays.asList(
+				//DISTANCE 1
+				new int[] {i,j-1},
+				new int[] {i,j+1},
+				new int[] {i-1,j},
+				new int[] {i+1,j},
+				//DISTANCE 2
+				new int[] {i,j-2},
+				new int[] {i,j+2},
+				new int[] {i-2,j},
+				new int[] {i+2,j},
+				new int[] {i-1,j-1},
+				new int[] {i-1,j+1},
+				new int[] {i+1,j-1},
+				new int[] {i+1,j+1},
+				//DISTANCE 3
+				new int[] {i,j-3},
+				new int[] {i,j+3},
+				new int[] {i-3,j},
+				new int[] {i+3,j},
+				new int[] {i-2,j-1},
+				new int[] {i-2,j+1},
+				new int[] {i+2,j-1},
+				new int[] {i+2,j+1},
+				new int[] {i+1,j-2},
+				new int[] {i+1,j+2},
+				new int[] {i-2,j+1},
+				new int[] {i+2,j+1}
+		));
+		
+		for (int[] pos : biglist) {
+			try {
+				if(Grille.getInstance().isSourceNourriture(pos[0], pos[1]))
+					return pos;
+			} catch (IndexOutOfBoundsException e) {
+				
+			}
+		}	
+		return null;
 	}
 }
 

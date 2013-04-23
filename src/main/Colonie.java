@@ -21,6 +21,7 @@ public class Colonie {
 			*/
 			listeFourmis[i] = new FourmiSimple(couple[0],couple[1]);
 		}
+//		System.out.println(listeFourmis[0].voitNourriture());
 	} 
 
 }
