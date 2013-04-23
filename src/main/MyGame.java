@@ -13,7 +13,8 @@ import javax.swing.JFrame;
 import core.Grille;
 
 public class MyGame {
-	private static final int FRAME_DELAY = 200; // 20ms. implies 50fps (1000/20) = 50
+	private static final int FRAME_DELAY = 200; // 20ms. implies 50fps (1000/20)
+												// = 50
 	private static Colonie colonie = new Colonie();
 
 	public static void main(String[] args) {
@@ -58,7 +59,7 @@ public class MyGame {
 		}
 
 		private void updateGameState() {
-			for (int k=0; k<colonie.nbfourmis; k++) {
+			for (int k = 0; k < colonie.nbfourmis; k++) {
 				colonie.listeFourmis[k].deplacement();
 			}
 		}
@@ -66,7 +67,7 @@ public class MyGame {
 		private void updateGUI(BufferStrategy strategy) {
 			Graphics g = strategy.getDrawGraphics();
 
-			///////////////
+			// /////////////
 			double[][] tableau = Grille.grille;
 			// On va dessiner case par case.
 			int i, j, x, y;
@@ -78,13 +79,14 @@ public class MyGame {
 					g.fillRect(x, y, taille, taille);
 				}
 			}
-			
+
 			g.setColor(Color.blue);
-			for (int k=0; k<colonie.listeFourmis.length; k++) {
-				g.fillRect(offset.width+colonie.listeFourmis[k].getPosi()*taille, offset.height+colonie.listeFourmis[k].getPosj()*taille, taille, taille);
+			for (int k = 0; k < colonie.listeFourmis.length; k++) {
+				g.fillRect(offset.width + colonie.listeFourmis[k].getPosi() * taille, offset.height
+						+ colonie.listeFourmis[k].getPosj() * taille, taille, taille);
 			}
-			
-			////////
+
+			// //////
 			g.dispose();
 			strategy.show();
 		}
@@ -94,27 +96,29 @@ public class MyGame {
 			long difference = cycleTime - System.currentTimeMillis();
 			try {
 				Thread.sleep(Math.max(0, difference));
-			}
-			catch(InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+
 		/**
 		 * Fonction qui associe une couleur à un caractère.
-		 * @param c Caractère à représenter.
+		 * 
+		 * @param c
+		 *            Caractère à représenter.
 		 * @return Une couleur bidon.
 		 */
 		public Color couleur(double d) {
-			
-			if (d < -1){ //nourriture
+
+			if (d < -1) { // nourriture
 				return Color.green;
 			}
-			
-			if (d == -1){ //fourmili�re
+
+			if (d == -1) { // fourmilière
 				return Color.orange;
 			}
-			
-			return Color.gray; //rien
+
+			return Color.gray; // rien
 		}
 	}
 }

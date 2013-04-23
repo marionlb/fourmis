@@ -85,19 +85,8 @@ public class Grille {
 		i = (int) (Math.random() * N / 2 + N / 4);
 		j = (int) (Math.random() * N / 2 + N / 4);
 		grille[i][j] = -1;
-		int[] couple = {i,j};
+		int[] couple = { i, j };
 		return couple;
-	}
-
-	public static void placerSourcesNourriture(int nb) {
-		for (int k = 0; k < nb; k++) {
-			int i, j;
-			// i et j entre 0 et N-1
-			i = (int) (Math.random() * N);
-			j = (int) (Math.random() * N);
-
-			grille[i][j] = -(k + 2);
-		}
 	}
 
 	public void deposerPheromone(int i, int j, Pheromone pheromone, double quantite) {

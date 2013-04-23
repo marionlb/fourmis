@@ -35,134 +35,130 @@ public abstract class FourmiAbstraite implements Runnable {
 	}
 
 	public void deplacementAleatoire() {
-		if (this.revenirMaison) 
+		double posidem = 0.3;
+
+		if (this.revenirMaison)
 			this.revenirMaison();
 
 		else {
-			double tirage = Math.random();	
-		
-			int[] dernierePos = this.chemin.itineraire.lastElement();
-			int oldi=dernierePos[0],oldj=dernierePos[1];
-		
-			//on vient de la gauche
-			if(oldi==posi && oldj<posj)
-				if(tirage<0.5)
-					//vers la droite
+			double tirage = Math.random();
+
+			int[] dernierePos;
+			if (chemin.itineraire.size() < 2)
+				dernierePos = this.chemin.itineraire.lastElement();
+			else
+				dernierePos = this.chemin.itineraire.elementAt(chemin.itineraire.size() - 2);
+
+			int oldi = dernierePos[0], oldj = dernierePos[1];
+
+			// on vient de la gauche
+			if (oldi == posi && oldj < posj)
+				if (tirage < posidem)
+					// vers la droite
 					prendreDroite();
-				else if(tirage<2./3)
-					//vers le bas
+				else if (tirage < (1 - posidem) / 2)
+					// vers le bas
 					prendreBas();
 				else
-					//vers le haut
+					// vers le haut
 					prendreHaut();
-		
-			//on vient de la droite
-			else if(oldi==posi && oldj>posj)
-				if(tirage<0.5)
-					//vers la gauche
+
+			// on vient de la droite
+			else if (oldi == posi && oldj > posj)
+				if (tirage < posidem)
+					// vers la gauche
 					prendreGauche();
-				else if(tirage<2./3)
-					//vers le bas
+				else if (tirage < (1 - posidem) / 2)
+					// vers le bas
 					prendreBas();
 				else
-					//vers le haut
+					// vers le haut
 					prendreHaut();
-		
-			//on vient du haut
-			else if(oldi<posi && oldj==posj)
-				if(tirage<0.5)
-					//vers le bas
+
+			// on vient du haut
+			else if (oldi < posi && oldj == posj)
+				if (tirage < posidem)
+					// vers le bas
 					prendreBas();
-				else if(tirage<2./3)
-					//vers la droite
+				else if (tirage < (1 - posidem) / 2)
+					// vers la droite
 					prendreDroite();
 				else
-					//vers la gauche
+					// vers la gauche
 					prendreGauche();
-		
-			//on vient du bas
-			else if(oldi>posi && oldj==posj)
-				if(tirage<0.5)
-					//vers le haut
+
+			// on vient du bas
+			else if (oldi > posi && oldj == posj)
+				if (tirage < posidem)
+					// vers le haut
 					prendreHaut();
-				else if(tirage<2./3)
-					//vers la droite
+				else if (tirage < (1 - posidem) / 2)
+					// vers la droite
 					prendreDroite();
 				else
-					//vers la gauche
+					// vers la gauche
 					prendreGauche();
-		
-			else 
-		
-				if(tirage<0.25) 
-					//vers le bas
-					prendreBas();
-				else if(tirage<0.5) 
-					//vers le haut
-					prendreHaut();
-				else if(tirage<0.75)
-					//vers la droite
-					prendreDroite();
-				else 
-					//vers la gauche
-					prendreGauche();
-		
+
+			else
+
+			if (tirage < 0.25)
+				// vers le bas
+				prendreBas();
+			else if (tirage < 0.5)
+				// vers le haut
+				prendreHaut();
+			else if (tirage < 0.75)
+				// vers la droite
+				prendreDroite();
+			else
+				// vers la gauche
+				prendreGauche();
+
 			this.chemin.ajouterPos(posi, posj);
 		}
 	}
 
 	public void revenirMaison() {
-		if (Grille.getInstance().isFourmillere(posi, posj))
+		if (Grille.getInstance().isFourmillere(posi, posj)) {
 			this.revenirMaison = false;
-		else {
-			this.posi = this.chemin.itineraire.get(this.chemin.itineraire.size()-2)[0];
-			this.posj = this.chemin.itineraire.get(this.chemin.itineraire.size()-2)[1];
-			this.chemin.itineraire.removeElementAt(this.chemin.itineraire.size()-1);
+			this.chemin.itineraire.clear();
+			this.chemin.ajouterPos(posi, posj);
+		} else {
+			this.posi = this.chemin.itineraire.get(this.chemin.itineraire.size() - 2)[0];
+			this.posj = this.chemin.itineraire.get(this.chemin.itineraire.size() - 2)[1];
+			this.chemin.itineraire.removeElementAt(this.chemin.itineraire.size() - 1);
 		}
-	
+
 	}
 
 	public int[] voitNourriture() {
-		int DISTANCE=3;
-		int i=posi, j=posj;
-	
+		int DISTANCE = 3;
+		int i = posi, j = posj;
+
 		List<int[]> biglist = new ArrayList<int[]>();
 		biglist.addAll(Arrays.asList(
-				//DISTANCE 1
-				new int[] {i,j-1,1},
-				new int[] {i,j+1,1},
-				new int[] {i-1,j,1},
-				new int[] {i+1,j,1},
-				//DISTANCE 2
-				new int[] {i,j-2,2},
-				new int[] {i,j+2,2},
-				new int[] {i-2,j,2},
-				new int[] {i+2,j,2},
-				new int[] {i-1,j-1,2},
-				new int[] {i-1,j+1,2},
-				new int[] {i+1,j-1,2},
-				new int[] {i+1,j+1,2},
-				//DISTANCE 3
-				new int[] {i,j-3,3},
-				new int[] {i,j+3,3},
-				new int[] {i-3,j,3},
-				new int[] {i+3,j,3},
-				new int[] {i-2,j-1,3},
-				new int[] {i-2,j+1,3},
-				new int[] {i+2,j-1,3},
-				new int[] {i+2,j+1,3},
-				new int[] {i+1,j-2,3},
-				new int[] {i+1,j+2,3},
-				new int[] {i-2,j+1,3},
-				new int[] {i+2,j+1,3}
-		));
-	
+				// DISTANCE 1
+				new int[] { i, j - 1, 1 }, new int[] { i, j + 1, 1 },
+				new int[] { i - 1, j, 1 },
+				new int[] { i + 1, j, 1 },
+				// DISTANCE 2
+				new int[] { i, j - 2, 2 }, new int[] { i, j + 2, 2 }, new int[] { i - 2, j, 2 }, new int[] {
+						i + 2, j, 2 }, new int[] { i - 1, j - 1, 2 }, new int[] { i - 1, j + 1, 2 },
+				new int[] { i + 1, j - 1, 2 },
+				new int[] { i + 1, j + 1, 2 },
+				// DISTANCE 3
+				new int[] { i, j - 3, 3 }, new int[] { i, j + 3, 3 }, new int[] { i - 3, j, 3 }, new int[] {
+						i + 3, j, 3 }, new int[] { i - 2, j - 1, 3 }, new int[] { i - 2, j + 1, 3 },
+				new int[] { i + 2, j - 1, 3 }, new int[] { i + 2, j + 1, 3 }, new int[] { i + 1, j - 2, 3 },
+				new int[] { i + 1, j + 2, 3 }, new int[] { i - 2, j + 1, 3 }, new int[] { i + 2, j + 1, 3 }));
+
 		for (int[] pos : biglist) {
 			try {
-				if(Grille.getInstance().isSourceNourriture(pos[0], pos[1]))
+				if (Grille.getInstance().isSourceNourriture(pos[0], pos[1]))
 					return pos;
-			} catch (IndexOutOfBoundsException e) {	}
-		}	
+			} catch (IndexOutOfBoundsException e) {
+			}
+		}
 		return null;
 	}
 
@@ -172,33 +168,34 @@ public abstract class FourmiAbstraite implements Runnable {
 
 	protected void prendreDroite() {
 		int taille = Grille.N;
-		this.posj = -Math.abs(this.posj+1 -(taille-1)) + taille-1;
+		this.posj = -Math.abs(this.posj + 1 - (taille - 1)) + taille - 1;
 	}
 
 	protected void prendreBas() {
 		int taille = Grille.N;
-		this.posi = -Math.abs(this.posi+1 -(taille-1)) +(taille-1);
+		this.posi = -Math.abs(this.posi + 1 - (taille - 1)) + (taille - 1);
 	}
 
 	protected void prendreHaut() {
 		this.posi = Math.abs(this.posi - 1);
 	}
-	
+
 	public void avancerVers(int i, int j) {
-		int di = posi-i, dj=posj-j;
-		
-		if( i < posi )
-			//on veut aller vers le bas (diminuer posi)
+		int di = posi - i, dj = posj - j;
+
+		if (i < posi)
+			// on veut aller vers le bas (diminuer posi)
 			prendreBas();
-		else if( i > posi) 
-			//on veut aller vers le haut
+		else if (i > posi)
+			// on veut aller vers le haut
 			prendreHaut();
-		else if( j < posj )
-			//on veut aller vers la gauche (diminuer posj)
+		else if (j < posj)
+			// on veut aller vers la gauche (diminuer posj)
 			prendreGauche();
-		else if( j > posj) 
-			//on veut aller vers la droite (augmenter posj)
+		else if (j > posj)
+			// on veut aller vers la droite (augmenter posj)
 			prendreDroite();
+
 	}
 }
 
