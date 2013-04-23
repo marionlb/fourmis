@@ -62,7 +62,7 @@ public abstract class FourmiAbstraite implements Runnable {
 						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
 					}
 					else{
-						this.posj = -Math.abs(this.posj+1 -50) +50; 	//aller à droite
+						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
 					}
 				}
 			}
@@ -72,21 +72,21 @@ public abstract class FourmiAbstraite implements Runnable {
 						this.posj = Math.abs(this.posj - 1);	//aller à gauche
 					}
 					else if (tirage>0.3){
-						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
+						this.posi = Math.abs(this.posi - 1);	//monter  
 					}
 					else{
-						this.posi = Math.abs(this.posi - 1);	//monter  
+						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
 					}
 				}
 				else{	//du haut vers le bas
 					if (tirage<0.3){
-						this.posj = Math.abs(this.posj - 1);	//aller à gauche
-					}
-					else if (tirage>0.3){
 						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
 					}
-					else{
+					else if (tirage>0.3){
 						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
+					}
+					else{
+						this.posj = Math.abs(this.posj - 1);	//aller à gauche
 					}
 				}
 			}
