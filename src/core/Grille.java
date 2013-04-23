@@ -11,7 +11,7 @@ public class Grille {
 	private static Grille instance = null;
 	private static int decalage = 10000;
 
-	public Grille() {
+	private Grille() {
 		Grille.N = 50;
 		Grille.grille = new double[N][N];
 

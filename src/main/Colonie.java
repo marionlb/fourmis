@@ -9,7 +9,7 @@ public class Colonie {
 	Grille terrain;
 	
 	public Colonie() {
-		this.terrain = new Grille();
+		this.terrain = Grille.getInstance();
 		int[] couple = Grille.placerFourmillere();
 		Grille.placerSourcesNourriture(3);
 		listeFourmis = new FourmiAbstraite[nbfourmis];
