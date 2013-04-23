@@ -10,14 +10,8 @@ public class FourmiGentille extends FourmiIntelligente {
 	public void deplacement() {
 		
 		if (this.revenirMaison) {
-			if (Grille.getInstance().isFourmillere(posi, posj))
-				this.revenirMaison = false;
-			else {
-				this.posi = this.chemin.itineraire.get(this.chemin.itineraire.size()-2)[0];
-				this.posj = this.chemin.itineraire.get(this.chemin.itineraire.size()-2)[1];
-				this.deposerPheromone(this.Q/this.chemin.longueur);
-				this.chemin.itineraire.removeElementAt(this.chemin.itineraire.size()-1);
-			}
+			this.revenirMaison();
+			this.deposerPheromone(this.Q/this.chemin.longueur);
 		}
 		else {
 			if (Grille.getInstance().isSourceNourriture(posi, posj)) {

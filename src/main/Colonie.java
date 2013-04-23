@@ -19,7 +19,7 @@ public class Colonie {
 			int x = (int) (Math.random() * 50);
 			int y = (int) (Math.random() * 50);
 			*/
-			listeFourmis[i] = new FourmiSimple(couple[0],couple[1]);
+			listeFourmis[i] = new FourmiGentille(couple[0],couple[1]);
 		}
 //		System.out.println(listeFourmis[0].voitNourriture());
 	} 

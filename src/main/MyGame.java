@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import core.Grille;
 
 public class MyGame {
-	private static final int FRAME_DELAY = 50; // 20ms. implies 50fps (1000/20) = 50
+	private static final int FRAME_DELAY = 200; // 20ms. implies 50fps (1000/20) = 50
 	private static Colonie colonie = new Colonie();
 
 	public static void main(String[] args) {
@@ -70,7 +70,7 @@ public class MyGame {
 			int i, j, x, y;
 			for (i = 0, x = offset.width; i < tableau.length; i++, x += taille) {
 				for (j = 0, y = offset.height; j < tableau[i].length; j++, y += taille) {
-					// R�cup�ration de la couleur associ�e
+					// Récupération de la couleur associée
 					g.setColor(couleur(tableau[i][j]));
 					//
 					g.fillRect(x, y, taille, taille);
@@ -98,8 +98,8 @@ public class MyGame {
 			}
 		}
 		/**
-		 * Fonction qui associe une couleur � un caract�re.
-		 * @param c Caract�re � repr�senter.
+		 * Fonction qui associe une couleur à un caractère.
+		 * @param c Caractère à représenter.
 		 * @return Une couleur bidon.
 		 */
 		public Color couleur(double d) {

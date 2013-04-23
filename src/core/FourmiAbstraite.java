@@ -35,78 +35,90 @@ public abstract class FourmiAbstraite implements Runnable {
 	}
 
 	public void deplacementAleatoire() {
-		double tirage = Math.random();	
-	
-		int[] dernierePos = this.chemin.itineraire.lastElement();
-		int oldi=dernierePos[0],oldj=dernierePos[1];
-	
-		//on vient de la gauche
-		if(oldi==posi && oldj<posj)
-			if(tirage<0.5)
-				//vers la droite
-				prendreDroite();
-			else if(tirage<2./3)
-				//vers le bas
-				prendreBas();
-			else
-				//vers le haut
-				prendreHaut();
-	
-		//on vient de la droite
-		else if(oldi==posi && oldj>posj)
-			if(tirage<0.5)
-				//vers la gauche
-				prendreGauche();
-			else if(tirage<2./3)
-				//vers le bas
-				prendreBas();
-			else
-				//vers le haut
-				prendreHaut();
-	
-		//on vient du haut
-		else if(oldi<posi && oldj==posj)
-			if(tirage<0.5)
-				//vers le bas
-				prendreBas();
-			else if(tirage<2./3)
-				//vers la droite
-				prendreDroite();
-			else
-				//vers la gauche
-				prendreGauche();
-	
-		//on vient du bas
-		else if(oldi>posi && oldj==posj)
-			if(tirage<0.5)
-				//vers le haut
-				prendreHaut();
-			else if(tirage<2./3)
-				//vers la droite
-				prendreDroite();
-			else
-				//vers la gauche
-				prendreGauche();
-	
-		else 
-	
-			if(tirage<0.25) 
-				//vers le bas
-				prendreBas();
-			else if(tirage<0.5) 
-				//vers le haut
-				prendreHaut();
-			else if(tirage<0.75)
-				//vers la droite
-				prendreDroite();
+		if (this.revenirMaison) 
+			this.revenirMaison();
+
+		else {
+			double tirage = Math.random();	
+		
+			int[] dernierePos = this.chemin.itineraire.lastElement();
+			int oldi=dernierePos[0],oldj=dernierePos[1];
+		
+			//on vient de la gauche
+			if(oldi==posi && oldj<posj)
+				if(tirage<0.5)
+					//vers la droite
+					prendreDroite();
+				else if(tirage<2./3)
+					//vers le bas
+					prendreBas();
+				else
+					//vers le haut
+					prendreHaut();
+		
+			//on vient de la droite
+			else if(oldi==posi && oldj>posj)
+				if(tirage<0.5)
+					//vers la gauche
+					prendreGauche();
+				else if(tirage<2./3)
+					//vers le bas
+					prendreBas();
+				else
+					//vers le haut
+					prendreHaut();
+		
+			//on vient du haut
+			else if(oldi<posi && oldj==posj)
+				if(tirage<0.5)
+					//vers le bas
+					prendreBas();
+				else if(tirage<2./3)
+					//vers la droite
+					prendreDroite();
+				else
+					//vers la gauche
+					prendreGauche();
+		
+			//on vient du bas
+			else if(oldi>posi && oldj==posj)
+				if(tirage<0.5)
+					//vers le haut
+					prendreHaut();
+				else if(tirage<2./3)
+					//vers la droite
+					prendreDroite();
+				else
+					//vers la gauche
+					prendreGauche();
+		
 			else 
-				//vers la gauche
-				prendreGauche();
-	
-		this.chemin.ajouterPos(posi, posj);
+		
+				if(tirage<0.25) 
+					//vers le bas
+					prendreBas();
+				else if(tirage<0.5) 
+					//vers le haut
+					prendreHaut();
+				else if(tirage<0.75)
+					//vers la droite
+					prendreDroite();
+				else 
+					//vers la gauche
+					prendreGauche();
+		
+			this.chemin.ajouterPos(posi, posj);
+		}
 	}
 
 	public void revenirMaison() {
+		if (Grille.getInstance().isFourmillere(posi, posj))
+			this.revenirMaison = false;
+		else {
+			this.posi = this.chemin.itineraire.get(this.chemin.itineraire.size()-2)[0];
+			this.posj = this.chemin.itineraire.get(this.chemin.itineraire.size()-2)[1];
+			this.chemin.itineraire.removeElementAt(this.chemin.itineraire.size()-1);
+		}
 	
 	}
 
