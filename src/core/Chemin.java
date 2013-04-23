@@ -7,6 +7,12 @@ public class Chemin {
 	Vector<int[]> itineraire;
 	float longueur;
 	
+	public Chemin() {
+		super();
+		itineraire = new Vector<>();
+		longueur = 0;
+	}
+
 	public void calculerLongueur(){
 		float l = 0;
 		for (int i=0; i<itineraire.size()-1; i++)
@@ -21,5 +27,4 @@ public class Chemin {
 		int[] pos = {i,j};
 		itineraire.add(pos);
 	}
-
 }
