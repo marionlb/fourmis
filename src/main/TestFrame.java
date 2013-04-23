@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
@@ -25,11 +27,11 @@ public class TestFrame extends JFrame {
 	private final Dimension offset = new Dimension(100, 100);
 	private final int taille = 10;
 
-	public TestFrame(int width, int height) {
+	public TestFrame(int width, int height, Colonie colonie) {
 		super("Test affichage");
 		this.width = width;
 		this.height = height;
-		this.colonie = new Colonie();
+		this.colonie = colonie;
 	}
 
 	/**
@@ -82,18 +84,25 @@ public class TestFrame extends JFrame {
 		int width = 50;
 		int height = 50;
 
+		Colonie colonie = new Colonie();
 		// Creation de la fenètre.
-		TestFrame frame = new TestFrame(width, height);
+		final TestFrame frame = new TestFrame(width, height, colonie);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setSize(700, 700);
 		frame.setVisible(true);
 		
-		while (true) {
-			for (int k=0; k<frame.colonie.nbfourmis; k++) {
-				frame.colonie.listeFourmis[k].deplacement();
+		int TIMER_DELAY = 200;
+		new javax.swing.Timer(TIMER_DELAY, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int k=0; k<frame.colonie.nbfourmis; k++) {
+					frame.colonie.listeFourmis[k].deplacement();
+				}
+				frame.repaint();
 			}
-			frame.repaint();
-		}
+		}).start();
+		
 	}
 
 	/* On s'en fiche */
