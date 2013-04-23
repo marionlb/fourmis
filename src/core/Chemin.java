@@ -14,13 +14,7 @@ public class Chemin {
 	}
 
 	public void calculerLongueur(){
-		float l = 0;
-		for (int i=0; i<itineraire.size()-1; i++)
-		{
-			l +=Math.sqrt( (itineraire.get(i)[0]-itineraire.get(i+1)[0])*(itineraire.get(i)[0]-itineraire.get(i+1)[0]) + (itineraire.get(i)[1]-itineraire.get(i+1)[1])*(itineraire.get(i)[1]-itineraire.get(i+1)[1]) );
-		}
-		
-		longueur = l;
+		longueur = itineraire.size();
 	}
 	
 	public void ajouterPos(int i, int j){
