@@ -12,17 +12,17 @@ import javax.swing.JFrame;
 
 public class TestFrame extends JFrame {
 
-	/* Données */
+	/* DonnÃ©es */
 	final int width, height;
 	
 	public Colonie colonie;
 
 	/*
-	 * Paramètres graphiques.
+	 * ParamÃ¨tres graphiques.
 	 * 
-	 * offset: Position de la grille affichée.
+	 * offset: Position de la grille affichÃ©e.
 	 * 
-	 * taille: Taille d'une case à l'affichage.
+	 * taille: Taille d'une case Ã  l'affichage.
 	 */
 	private final Dimension offset = new Dimension(100, 100);
 	private final int taille = 10;
@@ -35,7 +35,7 @@ public class TestFrame extends JFrame {
 	}
 
 	/**
-	 * Redessine le contenu de la fenètre.
+	 * Redessine le contenu de la fenï¿½tre.
 	 */
 	@Override
 	public void paint(Graphics graphics) {
@@ -47,7 +47,7 @@ public class TestFrame extends JFrame {
 		int i, j, x, y;
 		for (i = 0, x = offset.width; i < tableau.length; i++, x += taille) {
 			for (j = 0, y = offset.height; j < tableau[i].length; j++, y += taille) {
-				// Récupération de la couleur associée
+				// RÃ©cupÃ©ration de la couleur associÃ©e
 				g.setColor(couleur(tableau[i][j]));
 				//
 				g.fillRect(x, y, taille, taille);
@@ -61,8 +61,8 @@ public class TestFrame extends JFrame {
 	}
 
 	/**
-	 * Fonction qui associe une couleur à  un caractère.
-	 * @param c Caractère à représenter.
+	 * Fonction qui associe une couleur Ã  un caractÃ¨re.
+	 * @param c CaractÃ¨re Ã  reprÃ©senter.
 	 * @return Une couleur bidon.
 	 */
 	public Color couleur(double d) {
@@ -71,7 +71,7 @@ public class TestFrame extends JFrame {
 			return Color.green;
 		}
 		
-		if (d == -1){ //fourmilière
+		if (d == -1){ //fourmiliÃ¨re
 			return Color.orange;
 		}
 		
@@ -85,7 +85,7 @@ public class TestFrame extends JFrame {
 		int height = 50;
 
 		Colonie colonie = new Colonie();
-		// Creation de la fenètre.
+		// Creation de la fenÃªtre.
 		final TestFrame frame = new TestFrame(width, height, colonie);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setSize(700, 700);

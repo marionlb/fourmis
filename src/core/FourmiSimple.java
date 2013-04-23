@@ -17,16 +17,16 @@ public class FourmiSimple extends FourmiAbstraite{
 			int[] avantDerniere = this.chemin.itineraire.elementAt(chemin.itineraire.size()-2);
 
 			
-			if (dernierePos[0]-avantDerniere[0]==0){  //déplacement précédent horizontal
+			if (dernierePos[0]-avantDerniere[0]==0){  //dï¿½placement prï¿½cï¿½dent horizontal
 				if(dernierePos[1]-avantDerniere[1]<0){	//de la droite vers la gauche
 					if (tirage<0.33){
 						this.posi = Math.abs(this.posi - 1);	//monter
 					}
 					else if (tirage>0.33){
-						this.posi = -Math.abs(this.posi+1 -50) +50; 	//descendre
+						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
 					}
 					else{
-						this.posj = Math.abs(this.posj - 1);	//aller à gauche
+						this.posj = Math.abs(this.posj - 1);	//aller ï¿½ gauche
 					}
 				}
 				else{	//de la gauche vers la droite
@@ -34,20 +34,20 @@ public class FourmiSimple extends FourmiAbstraite{
 						this.posi = Math.abs(this.posi - 1);	//monter
 					}
 					else if (tirage>0.33){
-						this.posi = -Math.abs(this.posi+1 -50) +50; 	//descendre
+						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
 					}
 					else{
-						this.posj = -Math.abs(this.posj+1 -50) +50; 	//aller à droite
+						this.posj = -Math.abs(this.posj+1 -50) +50; 	//aller ï¿½ droite
 					}
 				}
 			}
-			else{	//déplacement précédent vertical
+			else{	//dï¿½placement prï¿½cï¿½dent vertical
 				if(dernierePos[0]-avantDerniere[0]<0){	//du bas vers le haut
 					if (tirage<0.33){
-						this.posj = Math.abs(this.posj - 1);	//aller à gauche
+						this.posj = Math.abs(this.posj - 1);	//aller ï¿½ gauche
 					}
 					else if (tirage>0.33){
-						this.posj = -Math.abs(this.posj+1 -50) +50; 	//aller à droite
+						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller ï¿½ droite
 					}
 					else{
 						this.posi = Math.abs(this.posi - 1);	//monter  
@@ -55,20 +55,20 @@ public class FourmiSimple extends FourmiAbstraite{
 				}
 				else{	//du haut vers le bas
 					if (tirage<0.33){
-						this.posj = Math.abs(this.posj - 1);	//aller à gauche
+						this.posj = Math.abs(this.posj - 1);	//aller ï¿½ gauche
 					}
 					else if (tirage>0.33){
-						this.posj = -Math.abs(this.posj+1 -50) +50; 	//aller à droite
+						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller ï¿½ droite
 					}
 					else{
-						this.posi = -Math.abs(this.posi+1 -50) +50; 	//descendre
+						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
 					}
 				}
 			}
 		}
 		else {
 			if (tirage<0.25) {
-				this.posi = -Math.abs(this.posi+1 -50) +50; 
+				this.posi = -Math.abs(this.posi+1 -49) +49; 
 			}
 			else if (tirage<0.50) {
 				this.posj = Math.abs(this.posj - 1);
@@ -77,7 +77,7 @@ public class FourmiSimple extends FourmiAbstraite{
 				this.posi = Math.abs(this.posi - 1);
 			}
 			else {
-				this.posj = -Math.abs(this.posj+1 -50) +50;
+				this.posj = -Math.abs(this.posj+1 -49) +49;
 			}
 		}
 		this.chemin.ajouterPos(posi, posj);
