@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import core.Grille;
 
 public class MyGame {
-	private static final int FRAME_DELAY = 200; // 20ms. implies 50fps (1000/20)
+	private static final int FRAME_DELAY = 100; // 20ms. implies 50fps (1000/20)
 												// = 50
 	private static Colonie colonie = new Colonie();
 
@@ -35,7 +35,7 @@ public class MyGame {
 		Canvas gui;
 		long cycleTime;
 		private final Dimension offset = new Dimension(100, 100);
-		private final int taille = colonie.nbfourmis;
+		private final int taille = 10;
 
 		public GameLoop(Canvas canvas) {
 			gui = canvas;

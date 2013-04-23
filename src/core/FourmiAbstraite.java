@@ -35,7 +35,7 @@ public abstract class FourmiAbstraite implements Runnable {
 	}
 
 	public void deplacementAleatoire() {
-		double posidem = 0.3;
+		double posidem = 0.7;
 
 		if (this.revenirMaison)
 			this.revenirMaison();
@@ -56,7 +56,7 @@ public abstract class FourmiAbstraite implements Runnable {
 				if (tirage < posidem)
 					// vers la droite
 					prendreDroite();
-				else if (tirage < (1 - posidem) / 2)
+				else if (tirage < posidem+(1 - posidem) / 2)
 					// vers le bas
 					prendreBas();
 				else
@@ -68,7 +68,7 @@ public abstract class FourmiAbstraite implements Runnable {
 				if (tirage < posidem)
 					// vers la gauche
 					prendreGauche();
-				else if (tirage < (1 - posidem) / 2)
+				else if (tirage < posidem+(1 - posidem) / 2)
 					// vers le bas
 					prendreBas();
 				else
@@ -80,7 +80,7 @@ public abstract class FourmiAbstraite implements Runnable {
 				if (tirage < posidem)
 					// vers le bas
 					prendreBas();
-				else if (tirage < (1 - posidem) / 2)
+				else if (tirage < posidem+(1 - posidem) / 2)
 					// vers la droite
 					prendreDroite();
 				else
@@ -92,7 +92,7 @@ public abstract class FourmiAbstraite implements Runnable {
 				if (tirage < posidem)
 					// vers le haut
 					prendreHaut();
-				else if (tirage < (1 - posidem) / 2)
+				else if (tirage < posidem+(1 - posidem) / 2)
 					// vers la droite
 					prendreDroite();
 				else
@@ -122,6 +122,7 @@ public abstract class FourmiAbstraite implements Runnable {
 		if (Grille.getInstance().isFourmillere(posi, posj)) {
 			this.revenirMaison = false;
 			this.chemin.itineraire.clear();
+			this.chemin.longueur=1;
 			this.chemin.ajouterPos(posi, posj);
 		} else {
 			this.posi = this.chemin.itineraire.get(this.chemin.itineraire.size() - 2)[0];
@@ -184,11 +185,11 @@ public abstract class FourmiAbstraite implements Runnable {
 		int di = posi - i, dj = posj - j;
 
 		if (i < posi)
-			// on veut aller vers le bas (diminuer posi)
-			prendreBas();
-		else if (i > posi)
-			// on veut aller vers le haut
+			// on veut aller vers le haut (diminuer posi)
 			prendreHaut();
+		else if (i > posi)
+			// on veut aller vers le bas
+			prendreBas();
 		else if (j < posj)
 			// on veut aller vers la gauche (diminuer posj)
 			prendreGauche();
