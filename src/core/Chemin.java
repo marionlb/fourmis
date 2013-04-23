@@ -9,7 +9,7 @@ public class Chemin {
 	
 	public Chemin() {
 		super();
-		itineraire = new Vector<>();
+		itineraire = new Vector<int[]>();
 		longueur = 0;
 	}
 
