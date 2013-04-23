@@ -17,48 +17,48 @@ public class FourmiSimple extends FourmiAbstraite{
 			int[] avantDerniere = this.chemin.itineraire.elementAt(chemin.itineraire.size()-2);
 
 			
-			if (dernierePos[0]-avantDerniere[0]==0){  //d�placement pr�c�dent horizontal
+			if (dernierePos[0]-avantDerniere[0]==0){  //déplacement précédent horizontal
 				if(dernierePos[1]-avantDerniere[1]<0){	//de la droite vers la gauche
-					if (tirage<0.33){
+					if (tirage<0.3){
 						this.posi = Math.abs(this.posi - 1);	//monter
 					}
-					else if (tirage>0.33){
+					else if (tirage>0.3){
 						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
 					}
 					else{
-						this.posj = Math.abs(this.posj - 1);	//aller � gauche
+						this.posj = Math.abs(this.posj - 1);	//aller à gauche
 					}
 				}
 				else{	//de la gauche vers la droite
-					if (tirage<0.33){
+					if (tirage<0.3){
 						this.posi = Math.abs(this.posi - 1);	//monter
 					}
-					else if (tirage>0.33){
+					else if (tirage>0.3){
 						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
 					}
 					else{
-						this.posj = -Math.abs(this.posj+1 -50) +50; 	//aller � droite
+						this.posj = -Math.abs(this.posj+1 -50) +50; 	//aller à droite
 					}
 				}
 			}
-			else{	//d�placement pr�c�dent vertical
+			else{	//déplacement précédent vertical
 				if(dernierePos[0]-avantDerniere[0]<0){	//du bas vers le haut
-					if (tirage<0.33){
-						this.posj = Math.abs(this.posj - 1);	//aller � gauche
+					if (tirage<0.3){
+						this.posj = Math.abs(this.posj - 1);	//aller à gauche
 					}
-					else if (tirage>0.33){
-						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller � droite
+					else if (tirage>0.3){
+						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
 					}
 					else{
 						this.posi = Math.abs(this.posi - 1);	//monter  
 					}
 				}
 				else{	//du haut vers le bas
-					if (tirage<0.33){
-						this.posj = Math.abs(this.posj - 1);	//aller � gauche
+					if (tirage<0.3){
+						this.posj = Math.abs(this.posj - 1);	//aller à gauche
 					}
-					else if (tirage>0.33){
-						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller � droite
+					else if (tirage>0.3){
+						this.posj = -Math.abs(this.posj+1 -49) +49; 	//aller à droite
 					}
 					else{
 						this.posi = -Math.abs(this.posi+1 -49) +49; 	//descendre
