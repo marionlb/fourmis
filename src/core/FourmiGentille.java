@@ -9,6 +9,8 @@ public class FourmiGentille extends FourmiIntelligente {
 	@Override
 	public void deplacement() {
 		
+		System.out.println("taille chemin" + this.chemin.itineraire.size());
+		System.out.println("revenir maison" + this.revenirMaison);
 		if (this.revenirMaison) {
 			this.revenirMaison();
 			this.deposerPheromone(this.Q/this.chemin.longueur);
@@ -22,7 +24,7 @@ public class FourmiGentille extends FourmiIntelligente {
 				if (this.voitNourriture()==null) {
 					double rand = Math.random();
 					if (rand < this.qo) {
-						double p1, p2, p3, max;
+						double p1, p2, p3, p4, max;
 						if (this.chemin.itineraire.size()>1) {
 							int[] dernierePos = this.chemin.itineraire.lastElement();
 							int[] avantDerniere = this.chemin.itineraire.elementAt(chemin.itineraire.size()-2);
@@ -108,7 +110,28 @@ public class FourmiGentille extends FourmiIntelligente {
 							}	
 						}
 						else {
+							p1 = Grille.getInstance().pheromone(Math.abs(this.posi - 1), posj, null);
+							p2 = Grille.getInstance().pheromone(this.posi, Math.abs(this.posj - 1), null);
+							p3 = Grille.getInstance().pheromone(-Math.abs(this.posi+1 -49) +49, posj, null);
+							p4 = Grille.getInstance().pheromone(this.posi, -Math.abs(this.posi+1 -49) +49, null);
 							
+							max = Math.max(p1, Math.max(p2, Math.max(p3, p4)));
+							if (max == p1) {
+								this.posi = Math.abs(this.posj - 1);
+								this.chemin.ajouterPos(posi, posj);
+							}
+							if (max == p2) {
+								this.posj = Math.abs(this.posj - 1);
+								this.chemin.ajouterPos(posi, posj);
+							}
+							if (max == p3) {
+								this.posi = -Math.abs(this.posi+1 -49) +49;
+								this.chemin.ajouterPos(posi, posj);
+							}
+							if (max == p4) {
+								this.posj = -Math.abs(this.posj+1 -49) +49;
+								this.chemin.ajouterPos(posi, posj);
+							} 
 						}
 					}
 					else {
