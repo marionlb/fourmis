@@ -68,6 +68,9 @@ public class MyGame {
 		private void updateGUI(BufferStrategy strategy) {
 			Graphics g = strategy.getDrawGraphics();
 			
+			g.setColor(Color.white);
+			g.fillRect(10, 10, 80, 50);
+			g.setColor(Color.black);
 			g.drawString("Source 1 : "+ Colonie.getListeSN().get(0).ressources, 10, 20);
 			g.drawString("Source 2 : "+ Colonie.getListeSN().get(1).ressources, 10, 40);
 			g.drawString("Source 3 : "+ Colonie.getListeSN().get(2).ressources, 10, 60);

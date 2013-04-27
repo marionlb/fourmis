@@ -10,6 +10,7 @@ public class SourceNourriture {
 		// ressources initiales entre 100 et 300
 		int r = (int) (Math.random() * 2 + 1);
 		this.ressources = r * 100;
+		this.id = id;
 	}
 
 	public void estPille(int quantite) {
