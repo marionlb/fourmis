@@ -10,6 +10,10 @@ public class Colonie {
 	static Grille terrain;
 	static List<SourceNourriture> listeSN=new ArrayList<SourceNourriture>();
 
+	public static List<SourceNourriture> getListeSN() {
+		return listeSN;
+	}
+
 	public Colonie() {
 		Colonie.terrain = Grille.getInstance();
 		int[] couple = Grille.placerFourmillere();

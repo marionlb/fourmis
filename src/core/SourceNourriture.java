@@ -4,7 +4,7 @@ public class SourceNourriture {
 
 	int i, j;
 	int id;
-	int ressources;
+	public int ressources;
 
 	public SourceNourriture(int i, int j, int id) {
 		// ressources initiales entre 100 et 300

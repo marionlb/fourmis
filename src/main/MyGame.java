@@ -15,10 +15,11 @@ import core.Grille;
 public class MyGame {
 	private static final int FRAME_DELAY = 100; // 20ms. implies 50fps (1000/20)
 												// = 50
+	
 	private static Colonie colonie = new Colonie();
 
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Fourmis-Agents");
+		JFrame frame = new JFrame("Fourmis-Agents");	
 		Canvas gui = new Canvas();
 		frame.getContentPane().add(gui);
 		frame.setSize(700, 700);
@@ -66,6 +67,10 @@ public class MyGame {
 
 		private void updateGUI(BufferStrategy strategy) {
 			Graphics g = strategy.getDrawGraphics();
+			
+			g.drawString("Source 1 : "+ Colonie.getListeSN().get(0).ressources, 10, 20);
+			g.drawString("Source 2 : "+ Colonie.getListeSN().get(1).ressources, 10, 40);
+			g.drawString("Source 3 : "+ Colonie.getListeSN().get(2).ressources, 10, 60);
 
 			// /////////////
 			double[][] tableau = Grille.grille;
